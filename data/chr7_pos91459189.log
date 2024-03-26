@@ -1,0 +1,16 @@
+PLINK v2.00a6 M1 (18 Mar 2024)
+Options in effect:
+  --bfile ./data/chr7_pos91459189
+  --export vcf
+  --out ./data/chr7_pos91459189
+
+Hostname: NCI-02278017-ML
+Working directory: /Users/gea2/Documents/medicaid/DeepImpute
+Start time: Tue Mar 26 12:49:13 2024
+
+Random number seed: 1711471753
+16384 MiB RAM detected; reserving 8192 MiB for main workspace.
+Using up to 10 threads (change this with --threads).
+Error: Failed to open ./data/chr7_pos91459189.fam : No such file or directory.
+
+End time: Tue Mar 26 12:49:13 2024

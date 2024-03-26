@@ -1,0 +1,15 @@
+PLINK v2.00a6 M1 (18 Mar 2024)
+Options in effect:
+  --bfile ./data/chr1_pos10566215.bed
+  --export
+  --out test.vcf
+
+Hostname: NCI-02278017-ML
+Working directory: /Users/gea2/Documents/medicaid/DeepImpute
+Start time: Tue Mar 26 11:33:04 2024
+
+Error: --export requires at least one output format.  (Did you forget 'ped' or
+'vcf'?)
+For more info, try "plink2 --help <flag name>" or "plink2 --help | more".
+
+End time: Tue Mar 26 11:33:04 2024

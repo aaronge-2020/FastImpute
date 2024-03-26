@@ -1,0 +1,20 @@
+PLINK v2.00a6 M1 (18 Mar 2024)
+Options in effect:
+  --bfile ./data/chr10_pos71335574
+  --export vcf
+  --out ./data/chr10_pos71335574
+
+Hostname: NCI-02278017-ML
+Working directory: /Users/gea2/Documents/medicaid/DeepImpute
+Start time: Tue Mar 26 13:05:41 2024
+
+Random number seed: 1711472741
+16384 MiB RAM detected; reserving 8192 MiB for main workspace.
+Using up to 10 threads (change this with --threads).
+2504 samples (0 females, 0 males, 2504 ambiguous; 2504 founders) loaded from
+./data/chr10_pos71335574.fam.
+1 variant loaded from ./data/chr10_pos71335574.bim.
+Note: No phenotype data present.
+--export vcf to ./data/chr10_pos71335574.vcf ... done.
+
+End time: Tue Mar 26 13:05:41 2024
