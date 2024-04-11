@@ -6,11 +6,15 @@ Options in effect:
 
 Hostname: NCI-02278017-ML
 Working directory: /Users/gea2/Documents/medicaid/DeepImpute
-Start time: Tue Mar 26 12:48:56 2024
+Start time: Tue Mar 26 14:27:28 2024
 
-Random number seed: 1711471736
+Random number seed: 1711477648
 16384 MiB RAM detected; reserving 8192 MiB for main workspace.
 Using up to 10 threads (change this with --threads).
-Error: Failed to open ./data/chr7_pos25569548.fam : No such file or directory.
+2504 samples (0 females, 0 males, 2504 ambiguous; 2504 founders) loaded from
+./data/chr7_pos25569548.fam.
+1 variant loaded from ./data/chr7_pos25569548.bim.
+Note: No phenotype data present.
+--export vcf to ./data/chr7_pos25569548.vcf ... done.
 
-End time: Tue Mar 26 12:48:56 2024
+End time: Tue Mar 26 14:27:28 2024
