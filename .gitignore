@@ -1,3 +1,6 @@
 
 /1000 Genome Project
 /1000_Genomes_Project
+*.vcf
+*.pth
+*.pt

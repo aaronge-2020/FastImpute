@@ -1,1 +1,0 @@
-https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release…_mvncall_integrated_v5b.20130502.genotypes.vcf.gz
