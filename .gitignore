@@ -5,3 +5,11 @@
 *.pth
 *.pt
 *.zip
+*.vcf
+*.vcf
+*.vcf
+*.log
+*.bed
+*.fam
+*.tbi
+*.gz
