@@ -13,3 +13,5 @@
 *.fam
 *.tbi
 *.gz
+Data/ld_variants/12_83064195.csv
+Data/ld_variants/chr12/12_83064195.csv
