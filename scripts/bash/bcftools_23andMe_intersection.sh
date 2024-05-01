@@ -7,7 +7,7 @@ positions_file="./Data/23andMe_metadata_files/23andMe_intersection_positions_80.
 vcf_dir="./Data/1000_Genomes_Project"
 
 # Output directory for the VCF files
-output_dir="./Data/23AndMePositions"
+output_dir="./Data/23AndMePositionsIntersection"
 
 # Check if output directory exists, if not create it
 mkdir -p "$output_dir"

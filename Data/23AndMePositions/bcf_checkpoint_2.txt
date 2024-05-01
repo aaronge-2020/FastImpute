@@ -1,3 +1,0 @@
-./Data/23AndMePositions/chr2/chr2_pos47639624
-./Data/23AndMePositions/chr2/chr2_pos47690278
-./Data/23AndMePositions/chr2/chr2_pos47703660
