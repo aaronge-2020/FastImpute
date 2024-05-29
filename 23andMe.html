@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>23andMe Data Processing</title>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.0/papaparse.min.js"></script>
+    <script src="./scripts/js/main.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
+
+</head>
+<body>
+    <h1>23andMe Data Processing</h1>
+    <input type="file" id="positionInfoFile" accept=".csv">
+    <input type="file" id="andmeDataFile" accept=".txt">
+    <button id="processFiles">Process Files</button>
+    <pre id="output"></pre>
+
+
+</body>
+</html>
