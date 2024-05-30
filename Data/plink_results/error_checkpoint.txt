@@ -1,8 +1,0 @@
-./data/chr3_pos63887449
-./data/chr4_pos126752992
-./data/chr4_pos187503758
-./data/chr4_pos84370124
-./data/chr5_pos176134882
-./data/chr5_pos52679539
-./data/chr7_pos91459189
-./data/chr10_pos22861490

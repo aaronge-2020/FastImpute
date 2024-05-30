@@ -1,8 +1,0 @@
-./data/chr3_pos63887449.vcf
-./data/chr4_pos126752992.vcf
-./data/chr4_pos187503758.vcf
-./data/chr4_pos84370124.vcf
-./data/chr5_pos176134882.vcf
-./data/chr5_pos52679539.vcf
-./data/chr7_pos91459189.vcf
-./data/chr10_pos22861490.vcf
