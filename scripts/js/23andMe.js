@@ -1,120 +1,132 @@
-async function fetchDefaultFile(url) {
-    const response = await fetch(url);
-    return response.text();
-}
+// Importing necessary libraries using ES6 modules
+import { csv, tsv, csvFormat } from 'https://esm.sh/d3@7.9.0';
+import * as saver from 'https://esm.sh/file-saver@2.0.5';
 
+// Function to extract "chrN:pos"
+const extractChrPos = value => {
+    const parts = value.split('_');
+    return `${parts[0]}:${parts[1]}`;
+};
 
-async function processFiles() {
-    const positionInfoFile = document.getElementById('positionInfoFile').files[0];
-    const andmeDataFile = document.getElementById('andmeDataFile').files[0];
-    
-    const defaultPositionInfoPath = './Data/Filtered_unphased_training_data_union_final/23andMe_matching_variants_updated.csv';
-    const defaultAndmeDataPath = './Data/23andMe_files/6800.23andme.10042.txt';
+// Function to extract alternative allele
+const extractAltAllele = value => {
+    const parts = value.split('_');
+    return parts[3];
+};
 
-    let positionInfoContent, andmeDataContent;
+// Function to extract reference allele
+const extractRefAllele = value => {
+    const parts = value.split('_');
+    return parts[2];
+};
 
-    if (positionInfoFile) {
-        positionInfoContent = await readFile(positionInfoFile);
-    } else {
-        positionInfoContent = await fetchDefaultFile(defaultPositionInfoPath);
-    }
+// Function to read data from CSV and TSV files
+const readData = async (positionInfoPath, andmeDataPath) => {
+    const positionInfo = await csv(positionInfoPath);
 
-    if (andmeDataFile) {
-        andmeDataContent = await readFile(andmeDataFile);
-    } else {
-        andmeDataContent = await fetchDefaultFile(defaultAndmeDataPath);
-    }
+    const andmeDataRaw = await fetch(andmeDataPath)
+        .then(response => response.text());
 
-    const positionInfo = Papa.parse(positionInfoContent, { header: true }).data;
-    const andmeData = Papa.parse(andmeDataContent, { header: false, delimiter: '\t', skipEmptyLines: true, comments: "#" }).data;
-    
-    const dosageData = process23andmeData(positionInfo, andmeData);
+    const andmeData = andmeDataRaw.split('\n')
+        .filter(line => !line.startsWith('#'))
+        .map(line => {
+            const [rsid, chromosome, position, genotype] = line.split('\t');
+            return { 
+                rsid, 
+                chromosome, 
+                position, 
+                genotype: genotype ? genotype.trim() : null,  // Trim any extra whitespace including \r
+                chr_pos: `chr${chromosome}:${position}` 
+            };
+        })
+        .filter(d => d.rsid); // Remove empty lines
 
-    return dosageData;
-}
-
-function readFile(file) {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = reject;
-        reader.readAsText(file);
+    positionInfo.forEach(d => {
+        d.chr_pos = extractChrPos(d.matching_columns);
+        d.Alt = extractAltAllele(d.matching_columns);
+        d.Ref = extractRefAllele(d.matching_columns);
     });
-}
 
-function process23andmeData(positionInfo, andmeData) {
-    const andmeDataFormatted = andmeData.map(row => ({
-        rsid: row[0],
-        chromosome: row[1],
-        position: row[2],
-        genotype: row[3]
-    }));
+    return { positionInfo, andmeData };
+};
 
-    const mergedData = mergeData(positionInfo, andmeDataFormatted);
-    createAlleleColumns(mergedData);
-    applyDosageCalculation(mergedData);
-    createPhasedColumns(mergedData);
-    const outputData = createOutputDataframe(mergedData);
-    return outputData;
-    // displayOutput(outputData);
-}
+// Function to merge data
+const mergeData = (positionInfo, andmeData) => {
+    const andmeDataMap = new Map(andmeData.map(d => [d.chr_pos, d]));
+    return positionInfo.map(d => ({ ...d, ...andmeDataMap.get(d.chr_pos) }));
+};
 
-function mergeData(positionInfo, andmeData) {
-    return positionInfo.map(pos => {
-        const match = andmeData.find(andme => andme.rsid === pos.RS_Number);
-        return { ...pos, ...match };
+// Function to create allele columns
+const createAlleleColumns = data => {
+    data.forEach(d => {
+        d.maternal_allele = d.genotype ? d.genotype[0] : null;
+        d.paternal_allele = d.genotype ? d.genotype[1] : null;
     });
-}
+    return data;
+};
 
-function createAlleleColumns(data) {
-    data.forEach(row => {
-        row.maternal_allele = row.genotype ? row.genotype[0] : null;
-        row.paternal_allele = row.genotype ? row.genotype[1] : null;
-    });
-}
-
-function calcDosage(allele, altAllele) {
-    if (allele === null || altAllele === null) {
-        return NaN;
-    }
+// Function to calculate dosage
+const calcDosage = (allele, altAllele) => {
+    if (!allele || !altAllele) return NaN;
     return allele === altAllele ? 1 : 0;
-}
+};
 
-function applyDosageCalculation(data) {
-    data.forEach(row => {
-        row.maternal_dosage = calcDosage(row.maternal_allele, row.Alt);
-        row.paternal_dosage = calcDosage(row.paternal_allele, row.Alt);
-        row.unphased_dosage = row.maternal_dosage + row.paternal_dosage;
+// Function to apply dosage calculation
+const applyDosageCalculation = data => {
+    data.forEach(d => {
+        d.maternal_dosage = calcDosage(d.maternal_allele, d.Alt);
+        d.paternal_dosage = calcDosage(d.paternal_allele, d.Alt);
+        d.unphased_dosage = d.maternal_dosage + d.paternal_dosage;
     });
-}
+    return data;
+};
 
-function createPhasedColumns(data) {
-    data.forEach(row => {
-        try {
-            const [coordPrefix, position] = row.Coord.split(':');
-            const [ref, alt] = row.Alleles.split('/').map(allele => allele.trim());
-            row.phased_column_maternal = `${coordPrefix}_${position}_${ref}_${alt}_maternal`;
-            row.phased_column_paternal = `${coordPrefix}_${position}_${ref}_${alt}_paternal`;
-            row.unphased_column = `${coordPrefix}_${position}_${ref}_${alt}_combined`;
-        } catch (error) {
-            console.error('Error creating phased columns', error);
-            debugger
-        }
-
+// Function to create phased columns
+const createPhasedColumns = data => {
+    data.forEach(d => {
+        const [coordPrefix, position] = d.chr_pos.split(':');
+        d.phased_column_maternal = `${coordPrefix}_${position}_${d.Ref}_${d.Alt}_maternal`;
+        d.phased_column_paternal = `${coordPrefix}_${position}_${d.Ref}_${d.Alt}_paternal`;
+        d.unphased_column = `${coordPrefix}_${position}_${d.Ref}_${d.Alt}_combined`;
     });
-}
+    return data;
+};
 
-function createOutputDataframe(data) {
-    const output = {};
-    data.forEach(row => {
-        output[row.phased_column_maternal] = row.maternal_dosage;
-        output[row.phased_column_paternal] = row.paternal_dosage;
-        output[row.unphased_column] = row.unphased_dosage;
+// Function to create output data
+const createOutputData = data => {
+    const outputData = {};
+
+    data.forEach(d => {
+        outputData[d.phased_column_maternal] = d.maternal_dosage;
+        outputData[d.phased_column_paternal] = d.paternal_dosage;
+        outputData[d.unphased_column] = d.unphased_dosage;
     });
-    return output;
-}
 
+    return [outputData];
+};
+
+// Function to save data as CSV
+const saveToCsv = (data, outputFileName) => {
+    const csvContent = csvFormat(data);
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    saveAs(blob, outputFileName);
+};
+
+// Main function to process 23andMe data
+const process23andMeData = async (positionInfoPath, andmeDataPath, outputFileName) => {
+    const { positionInfo, andmeData } = await readData(positionInfoPath, andmeDataPath);
+    let mergedData = mergeData(positionInfo, andmeData);
+    mergedData = createAlleleColumns(mergedData);
+    mergedData = applyDosageCalculation(mergedData);
+    mergedData = createPhasedColumns(mergedData);
+    const outputData = createOutputData(mergedData);
+    saveToCsv(outputData, outputFileName);
+    return outputData;
+};
+
+// Example usage
+process23andMeData('../../Data/Filtered_raw_training_data_union/matching_columns_all.csv', '../../Data/23andMe_files/11703.23andme.9619.txt', 'output.csv')
+    .then(data => console.log(data));
 export{
-    processFiles
+    process23andMeData
 }
-// Add the event listener to the processFiles button
