@@ -19,7 +19,7 @@ async function loadAllModels() {
     return acc;
   }, {});
 
-  alert("All models loaded successfully.");
+  console.log("All models loaded successfully.");
 }
 
 function preprocessDataForChromosome(chrNumber, data) {
@@ -68,10 +68,6 @@ async function makePredictions(chrNumber, inputData) {
   const results = await model.run(feeds);
   const output = results.output.data;
 
-  console.log(`Predictions for chromosome ${chrNumber}:`, output);
-  alert(
-    `Predictions made for chromosome ${chrNumber}. Check the console for details.`
-  );
   return output;
 }
 
