@@ -20,6 +20,12 @@ const extractRefAllele = value => {
     return parts[2];
 };
 
+// Function to extract PRS313 information
+const extractPRS313Info = value => {
+    const parts = value.split('_');
+    return parts[4] === 'PRS313' ? 'PRS313' : null;
+};
+
 // Function to read data from CSV and TSV files
 const readData = async (positionInfoPath, andmeDataPath) => {
     const positionInfo = await csv(positionInfoPath);
@@ -45,6 +51,7 @@ const readData = async (positionInfoPath, andmeDataPath) => {
         d.chr_pos = extractChrPos(d.matching_columns);
         d.Alt = extractAltAllele(d.matching_columns);
         d.Ref = extractRefAllele(d.matching_columns);
+        d.PRS313 = extractPRS313Info(d.matching_columns);
     });
 
     return { positionInfo, andmeData };
@@ -85,48 +92,55 @@ const applyDosageCalculation = data => {
 const createPhasedColumns = data => {
     data.forEach(d => {
         const [coordPrefix, position] = d.chr_pos.split(':');
-        d.phased_column_maternal = `${coordPrefix}_${position}_${d.Ref}_${d.Alt}_maternal`;
-        d.phased_column_paternal = `${coordPrefix}_${position}_${d.Ref}_${d.Alt}_paternal`;
-        d.unphased_column = `${coordPrefix}_${position}_${d.Ref}_${d.Alt}_combined`;
+        d.phased_column_maternal = `${coordPrefix}_${position}_${d.Ref}_${d.Alt}_maternal${d.PRS313 ? '_PRS313' : ''}`;
+        d.phased_column_paternal = `${coordPrefix}_${position}_${d.Ref}_${d.Alt}_paternal${d.PRS313 ? '_PRS313' : ''}`;
+        d.unphased_column = `${coordPrefix}_${position}_${d.Ref}_${d.Alt}_combined${d.PRS313 ? '_PRS313' : ''}`;
     });
     return data;
 };
 
-// Function to create output data
-const createOutputData = data => {
-    const outputData = {};
+// Function to create chromosome-wise dictionaries
+const createChromosomeWiseData = data => {
+    const chromosomeData = {};
 
+    // Initialize a dictionary for each chromosome
+    for (let i = 1; i <= 22; i++) {
+        chromosomeData[`chr${i}`] = { non_PRS313: {}, PRS313: {} };
+    }
+
+    // Populate the chromosome-specific dictionaries
     data.forEach(d => {
-        outputData[d.phased_column_maternal] = d.maternal_dosage;
-        outputData[d.phased_column_paternal] = d.paternal_dosage;
-        outputData[d.unphased_column] = d.unphased_dosage;
+        const chromosome = d.chr_pos.split(':')[0];
+        if (chromosomeData[chromosome]) {
+            const targetDict = d.PRS313 ? chromosomeData[chromosome].PRS313 : chromosomeData[chromosome].non_PRS313;
+            // targetDict[d.phased_column_maternal] = d.maternal_dosage;
+            // targetDict[d.phased_column_paternal] = d.paternal_dosage;
+            targetDict[d.unphased_column] = d.unphased_dosage;
+        }
     });
 
-    return [outputData];
-};
-
-// Function to save data as CSV
-const saveToCsv = (data, outputFileName) => {
-    const csvContent = csvFormat(data);
-    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-    saveAs(blob, outputFileName);
+    return chromosomeData;
 };
 
 // Main function to process 23andMe data
-const process23andMeData = async (positionInfoPath, andmeDataPath, outputFileName) => {
+const process23andMeData = async (andmeDataPath, outputFileName) => {
+    const positionInfoPath = '../../Data/Filtered_raw_training_data_union/matching_columns_all.csv';
+
+    if (!andmeDataPath) {
+        andmeDataPath = '../../Data/23andMe_files/11703.23andme.9619.txt';
+        outputFileName = 'output.csv';
+    }
+
     const { positionInfo, andmeData } = await readData(positionInfoPath, andmeDataPath);
     let mergedData = mergeData(positionInfo, andmeData);
     mergedData = createAlleleColumns(mergedData);
     mergedData = applyDosageCalculation(mergedData);
     mergedData = createPhasedColumns(mergedData);
-    const outputData = createOutputData(mergedData);
-    saveToCsv(outputData, outputFileName);
-    return outputData;
+    const chromosomeWiseData = createChromosomeWiseData(mergedData);
+
+    return chromosomeWiseData;
 };
 
-// Example usage
-process23andMeData('../../Data/Filtered_raw_training_data_union/matching_columns_all.csv', '../../Data/23andMe_files/11703.23andme.9619.txt', 'output.csv')
-    .then(data => console.log(data));
-export{
+export {
     process23andMeData
-}
+};

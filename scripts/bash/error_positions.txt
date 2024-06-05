@@ -1,9 +1,0 @@
-chr1_pos215953365
-1	840753
-
-
-chromosome="1"
-position="840753"
-vcf_dir="./Data/1000_Genomes_Project"
-vcf_file="${vcf_dir}/ALL.chr${chromosome}.phase3_shapeit2_mvncall_integrated_v5b.20130502.genotypes.vcf.gz"
-bcftools view -r "${chromosome}:${position}-${position}" "$vcf_file"
