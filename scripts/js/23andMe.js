@@ -128,7 +128,7 @@ const readAndmeFile = file => new Promise((resolve, reject) => {
 
 // Main function to process 23andMe data
 const process23andMeData = async (andmeDataContent) => {
-    const positionInfoPath = '../../Data/Filtered_raw_training_data_union/matching_columns_all.csv';
+    const positionInfoPath = 'https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/Filtered_raw_training_data_union/matching_columns_all.csv';
 
     const { positionInfo, andmeData } = await readData(positionInfoPath, andmeDataContent);
     let mergedData = mergeData(positionInfo, andmeData);
@@ -144,5 +144,5 @@ const process23andMeData = async (andmeDataContent) => {
 export {
     process23andMeData,
     readAndmeFile, 
-    
+
 };
