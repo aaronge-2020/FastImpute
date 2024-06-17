@@ -24,25 +24,22 @@ async function loadAllModels() {
 
 function preprocessDataForChromosome(chrNumber, data) {
   const chrPrefix = `chr${chrNumber}_`;
-  const filteredData = {};
+  const filteredData = [];
 
   for (const key in data) {
     if (key.startsWith(chrPrefix) && key.endsWith("_combined")) {
-      filteredData[key] = data[key] === null ? 0 : data[key];
+      filteredData.push({ key: key, value: data[key] === null ? NaN : data[key] });
     }
   }
 
-  const inputData = Object.values(filteredData);
-
-  if (inputData.length === 0) {
-    alert(
-      `No data available for chromosome ${chrNumber} with '_combined' suffix.`
-    );
+  if (filteredData.length === 0) {
+    alert(`No data available for chromosome ${chrNumber} with '_combined' suffix.`);
     return null;
   }
 
-  return inputData;
+  return filteredData;
 }
+
 
 // Make predictions with the specified chromosome model and input data
 async function makePredictions(chrNumber, inputData) {
