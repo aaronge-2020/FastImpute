@@ -28,7 +28,7 @@ function replaceNaNWithSimulation(arr, mafData) {
 
 // Function to load and parse the beta values from the XLSX file
 async function loadBetaValues() {
-  const response = await fetch('../../../Data/PRS313_with_23andMe.xlsx');
+  const response = await fetch('https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/PRS313_with_23andMe.xlsx');
   const arrayBuffer = await response.arrayBuffer();
   const workbook = XLSX.read(arrayBuffer, { type: 'array' });
   const sheetName = workbook.SheetNames[0];
@@ -39,7 +39,7 @@ async function loadBetaValues() {
 
 // Function to load and parse the headers of the true labels CSV file for a specific chromosome
 async function loadTrueLabelsHeaders(chrNumber) {
-  const response = await fetch(`../../../Data/y_test_labels_unphased/chr${chrNumber}_true_labels_y_test.csv`);
+  const response = await fetch(`https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/y_test_labels_unphased/chr${chrNumber}_true_labels_y_test.csv`);
   const csvText = await response.text();
   const parsedData = Papa.parse(csvText, { header: false });
   return parsedData.data[0]; // The first row contains the headers
@@ -91,7 +91,7 @@ async function imputePRS313(ttandMeData) {
       let inputData = preprocessDataForChromosome(i, ttandMeData[`chr${i}`].non_PRS313);
       if (!inputData) continue;
 
-      const mafData = await fetch(`../../../Data/MAF_calculations/23AndMe_PRS313_merged_chr${i}_MAF.csv`)
+      const mafData = await fetch(`https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/MAF_calculations/23AndMe_PRS313_merged_chr${i}_MAF.csv`)
                             .then(response => response.text())
                             .then(text => Papa.parse(text, { header: true }).data);
 
