@@ -1,6 +1,5 @@
 // Importing necessary libraries using ES6 modules
-import { csv, tsv, csvFormat } from 'https://esm.sh/d3@7.9.0';
-import * as saver from 'https://esm.sh/file-saver@2.0.5';
+import { csv } from 'https://esm.sh/d3@7.9.0';
 
 // Function to extract "chrN:pos"
 const extractChrPos = value => {
@@ -27,13 +26,10 @@ const extractPRS313Info = value => {
 };
 
 // Function to read data from CSV and TSV files
-const readData = async (positionInfoPath, andmeDataPath) => {
+const readData = async (positionInfoPath, andmeDataContent) => {
     const positionInfo = await csv(positionInfoPath);
 
-    const andmeDataRaw = await fetch(andmeDataPath)
-        .then(response => response.text());
-
-    const andmeData = andmeDataRaw.split('\n')
+    const andmeData = andmeDataContent.split('\n')
         .filter(line => !line.startsWith('#'))
         .map(line => {
             const [rsid, chromosome, position, genotype] = line.split('\t');
@@ -122,16 +118,19 @@ const createChromosomeWiseData = data => {
     return chromosomeData;
 };
 
+// Function to read the uploaded 23andMe file
+const readAndmeFile = file => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = event => resolve(event.target.result);
+    reader.onerror = reject;
+    reader.readAsText(file);
+});
+
 // Main function to process 23andMe data
-const process23andMeData = async (andmeDataPath, outputFileName) => {
+const process23andMeData = async (andmeDataContent) => {
     const positionInfoPath = '../../Data/Filtered_raw_training_data_union/matching_columns_all.csv';
 
-    if (!andmeDataPath) {
-        andmeDataPath = '../../Data/23andMe_files/11703.23andme.9619.txt';
-        outputFileName = 'output.csv';
-    }
-
-    const { positionInfo, andmeData } = await readData(positionInfoPath, andmeDataPath);
+    const { positionInfo, andmeData } = await readData(positionInfoPath, andmeDataContent);
     let mergedData = mergeData(positionInfo, andmeData);
     mergedData = createAlleleColumns(mergedData);
     mergedData = applyDosageCalculation(mergedData);
@@ -141,6 +140,9 @@ const process23andMeData = async (andmeDataPath, outputFileName) => {
     return chromosomeWiseData;
 };
 
+
 export {
-    process23andMeData
+    process23andMeData,
+    readAndmeFile, 
+    
 };
