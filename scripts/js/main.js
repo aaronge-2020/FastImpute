@@ -63,6 +63,7 @@ async function imputePRS313(ttandMeData) {
   const betaValues = await loadBetaValues();
   const X = parseInt(document.getElementById("numTrials").value, 10);
   document.getElementById("totalSimulations").textContent = X;
+  document.getElementById("progressCount").textContent = 0;
 
   const simulatedResults = [];
   const fetchPromises = [];
@@ -125,7 +126,7 @@ function calculateSummaryStatistics(data) {
 function displayResults(simulatedResults) {
   const phenotypes = ['Overall Breast Cancer', 'ER-positive', 'ER-negative', 'hybrid ER-positive', 'hybrid ER-negative'];
   const container = document.getElementById('results');
-  container.innerHTML = ''; // Clear previous results
+  
 
   let rowDiv = document.createElement('div');
   rowDiv.className = 'row';
@@ -235,6 +236,8 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("processFiles").addEventListener("click", async () => {
     const andmeDataFile = document.getElementById("andmeDataFile").files[0];
     if (andmeDataFile) {
+      const container = document.getElementById('results');
+      container.innerHTML = ''; // Clear previous results
       document.getElementById("loading").style.display = "flex";
       try {
         const andmeDataContent = await readAndmeFile(andmeDataFile);
