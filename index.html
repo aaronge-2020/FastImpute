@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>PRS313 Scores Calculator</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -8,6 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.0/papaparse.min.js"></script>
     <script src="./scripts/js/main.js" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
+
     <style>
         .loading-spinner {
             display: none;
@@ -15,21 +17,62 @@
             align-items: center;
             height: 100%;
         }
+
         .spinner-border {
             width: 3rem;
             height: 3rem;
         }
+
+        .progress-bar {
+            height: 25px;
+        }
+
+        .card-header {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .list-unstyled li {
+            margin-bottom: 0;
+        }
+
+        .chart-container {
+            position: relative;
+        }
+
+        .col-lg-4,
+        .col-md-6,
+        .col-sm-12 {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
     </style>
 </head>
-<body>
-    <div class="container">
-        <h1 class="my-4">PRS313 Scores Calculator From 23andMe Data</h1>
 
+<body>
+    <header class="bg-primary text-white text-center py-3">
+        <h1>PRS313 Scores Calculator</h1>
+        <p>Calculate PRS313 scores from your 23andMe data</p>
+    </header>
+    <div class="container mt-4">
         <!-- Input Section -->
         <div class="card mb-4">
             <div class="card-header">Upload 23andMe Data</div>
             <div class="card-body">
-                <input type="file" id="andmeDataFile" class="form-control mb-3" accept=".txt">
+                <div class="mb-3">
+                    <label for="andmeDataFile" class="form-label">Select your 23andMe data file</label>
+                    <input type="file" id="andmeDataFile" class="form-control" accept=".txt" data-bs-toggle="tooltip"
+                        data-bs-placement="top" title="Upload your raw 23andMe data file in .txt format">
+                </div>
+                <div class="mb-3">
+                    <label for="numTrials" class="form-label">Number of Simulation Trials: <span id="numTrialsValue"
+                            class="label-value">100</span></label>
+                    <input type="range" class="form-range" id="numTrials" min="10" max="1000" value="100" step="1">
+                </div>
                 <button id="processFiles" class="btn btn-primary">Process Files</button>
             </div>
         </div>
@@ -38,17 +81,24 @@
         <div class="card">
             <div class="card-header">Results</div>
             <div class="card-body">
+                <p id="progressIndicator" class="text-center">Processed: <span id="progressCount">0</span> / <span
+                        id="totalSimulations">0</span></p>
                 <div id="loading" class="loading-spinner">
                     <div class="spinner-border" role="status">
                         <span class="visually-hidden">Loading...</span>
                     </div>
                 </div>
-                <div id="results" style="display:none;">
-                    <canvas id="prsChart"></canvas>
+                <div id="summaryStats" class="row mt-4"></div>
+                <div id="results" class="row mt-4" style="display:none;">
+                    <!-- Cards will be inserted here -->
                 </div>
             </div>
         </div>
-
     </div>
+
+    <footer class="bg-light text-center py-3">
+        <p>&copy; 2024 PRS313 Scores Calculator</p>
+    </footer>
 </body>
+
 </html>
