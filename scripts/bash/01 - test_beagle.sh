@@ -89,4 +89,11 @@ for chr in {1..22}; do
   extract_positions "$chr"
 done
 
+# Process each chromosome
+for chr in 8 12 14 17; do
+  echo "Processing chromosome: $chr"
+  run_beagle "$chr"
+  extract_positions "$chr"
+done
+
 echo "Imputation and extraction complete for all chromosomes."
