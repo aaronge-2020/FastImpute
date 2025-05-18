@@ -1,1 +1,1 @@
-# [DeepImpute](https://aaronge-2020.github.io/DeepImpute/)
+# [FastImpute](https://aaronge-2020.github.io/DeepImpute/)
