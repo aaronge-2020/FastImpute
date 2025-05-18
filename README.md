@@ -22,8 +22,6 @@ Aaron Ge<sup>1,2</sup>, Jeya Balasubramanian<sup>1</sup>, Xueyao Wu<sup>1</sup>,
 6.  [Web Application (Client-Side Deployment)](#web-application-client-side-deployment)
 7.  [Performance & Results Highlights](#performance--results-highlights)
 8.  [Getting Started](#getting-started)
-    *   [Repository Structure](#repository-structure)
-    *   [Running the Pipeline (For Developers/Researchers)](#running-the-pipeline-for-developersresearchers)
     *   [Using the Web Application (For Users)](#using-the-web-application-for-users)
 9.  [Limitations and Future Directions](#limitations-and-future-directions)
 10. [Funding](#funding)
