@@ -1,4 +1,4 @@
-# [FastImpute: A Baseline for Open-source, Reference-Free Genotype Imputation Methods](https://aaronge-2020.github.io/DeepImpute/)
+# [FastImpute: A Baseline for Open-source, Reference-Free Genotype Imputation Methods](https://aaronge-2020.github.io/FastImpute/)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 <!-- Add other badges like build status, etc., if applicable -->
