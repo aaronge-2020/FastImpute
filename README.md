@@ -75,7 +75,7 @@ Model performance was evaluated at both the SNP level (using R², IQS, Accuracy,
 
 The trained linear regression model (which works with unphased data typical of DTC files) has been deployed as a web application, allowing users to calculate their PRS313_BC scores privately and efficiently in their browser.
 
-**Web Application:** [https://aaronge-2020.github.io/DeepImpute/](https://aaronge-2020.github.io/DeepImpute/)
+**Web Application:** [https://aaronge-2020.github.io/FastImpute/](https://aaronge-2020.github.io/FastImpute/)
 
 The web application allows users to upload their 23andMe data file. It handles missing SNPs on the user's chip via MAF-based simulations, imputes the required PRS313 SNPs using the FastImpute model, calculates the PRS for different breast cancer phenotypes across multiple simulations, and displays statistical summaries and distributions of the scores. This process is completed rapidly, typically within seconds for 1,000 simulations.
 
@@ -97,8 +97,8 @@ These results highlight that simple, lightweight models trained via the FastImpu
 
 The easiest way to use FastImpute for PRS calculation is through the deployed web application:
 
-1.  Go to the web application URL: [https://aaronge-2020.github.io/DeepImpute/](https://aaronge-2020.github.io/DeepImpute/)
-2.  Follow the instructions on the page to upload your 23andMe genotype data file.
+1.  Go to the web application URL: [https://aaronge-2020.github.io/FastImpute/](https://aaronge-2020.github.io/FastImpute/)
+2.  Download the example 23andMe text file or follow the instructions on the page to upload your 23andMe genotype data file.
 3.  The application will process your data locally in your browser and display your PRS313_BC scores for different breast cancer phenotypes.
 
 ## Limitations and Future Directions
