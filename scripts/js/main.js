@@ -51,8 +51,8 @@ function calculatePRS313Scores(dosages, betaValues, trueLabelsHeaders) {
       scores["Overall Breast Cancer"] += dosage * parseFloat(betaRow["Overall Breast Cancer"]);
       scores["ER-positive"] += dosage * parseFloat(betaRow["ER-positive"]);
       scores["ER-negative"] += dosage * parseFloat(betaRow["ER-negative"]);
-      scores["hybrid ER-positive"] += dosage * parseFloat(betaRow["hybrid ER-negative"]);
-      scores["hybrid ER-negative"] += dosage * parseFloat(betaRow["hybrid ER-positive"]);
+      scores["hybrid ER-positive"] += dosage * parseFloat(betaRow["hybrid ER-positive"]);
+      scores["hybrid ER-negative"] += dosage * parseFloat(betaRow["hybrid ER-negative"]);
     }
   });
 
