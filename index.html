@@ -1,128 +1,440 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>PRS313 Scores Calculator</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.0/papaparse.min.js"></script>
-    <script src="./scripts/js/main.js" type="module"></script>
-    <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
-
-    <style>
-        .loading-spinner {
-            display: none;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-        }
-
-        .spinner-border {
-            width: 3rem;
-            height: 3rem;
-        }
-
-        .progress-bar {
-            height: 25px;
-        }
-
-        .card-header {
-            font-size: 1.25rem;
-            font-weight: bold;
-            background-color: #0d6efd;
-            color: white;
-        }
-
-        .card-body {
-            padding: 1.5rem;
-        }
-
-        .list-unstyled li {
-            margin-bottom: 0;
-        }
-
-        .chart-container {
-            position: relative;
-        }
-
-        .col-lg-4,
-        .col-md-6,
-        .col-sm-12 {
-            padding-left: 5px;
-            padding-right: 5px;
-        }
-
-        header {
-            background: linear-gradient(90deg, #0d6efd, #6610f2);
-        }
-
-        footer {
-            background-color: #f8f9fa;
-        }
-
-        .btn-primary {
-            background-color: #0d6efd;
-            border: none;
-        }
-
-        .btn-primary:hover {
-            background-color: #0056b3;
-        }
-    </style>
-</head>
-
-<body>
-    <header class="bg-primary text-white text-center py-3">
-        <h1>PRS313 Scores Calculator</h1>
-        <p>Calculate PRS313 scores from your 23andMe data</p>
-    </header>
-    <div class="container mt-4">
-        <!-- Input Section -->
-        <div class="card mb-4">
-            <div class="card-header">Upload 23andMe Data</div>
-            <div class="card-body">
-                <div class="mb-3">
-                    <label for="andmeDataFile" class="form-label">Select your 23andMe data file</label>
-                    <input type="file" id="andmeDataFile" class="form-control" accept=".txt" data-bs-toggle="tooltip"
-                        data-bs-placement="top" title="Upload your raw 23andMe data file in .txt format">
-                </div>
-                <div class="mb-3">
-                    <a download href="https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/test_files/11576.23andme.9465.txt"
-                      class="btn btn-link">Download a default 23andMe file</a>
-
-                </div>
-                <div class="mb-3">
-                    <label for="numTrials" class="form-label">Number of Simulation Trials: <span id="numTrialsValue"
-                            class="label-value">100</span></label>
-                    <input type="range" class="form-range" id="numTrials" min="10" max="1000" value="100" step="1">
-                </div>
-                <button id="processFiles" class="btn btn-primary">Process Files</button>
-            </div>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Run reference-free genotype imputation and PRS313 scoring locally in your browser."
+    />
+    <title>FastImpute | Genotype analysis</title>
+    <link rel="icon" href="./assets/mark.svg" type="image/svg+xml" />
+    <link
+      rel="preload"
+      href="./vendor/fonts/ibm-plex-sans-400.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="./vendor/tabler/tabler.min.css" />
+    <link rel="stylesheet" href="./vendor/filepond/filepond.min.css" />
+    <link rel="stylesheet" href="./styles/workspace.css" />
+    <script defer src="./vendor/tabler/tabler.min.js"></script>
+    <script defer src="./vendor/filepond/filepond.min.js"></script>
+    <script defer src="./vendor/chartjs/chart.umd.js"></script>
+    <script type="module" src="./scripts/js/workspace.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to main content</a>
+    <div class="page">
+      <header class="navbar app-navbar">
+        <div class="container-xl app-nav-inner">
+          <a
+            class="navbar-brand"
+            href="#analysis"
+            aria-label="FastImpute analysis"
+            ><img
+              src="./assets/mark.svg"
+              width="28"
+              height="28"
+              alt=""
+            />FastImpute</a
+          >
+          <nav class="app-nav" aria-label="Main navigation">
+            <a href="#analysis" id="analysisLink" aria-current="page"
+              >Analysis</a
+            ><a href="#methodology" id="methodologyLink">Methodology</a>
+          </nav>
+          <a
+            class="source-link"
+            href="https://github.com/aaronge-2020/FastImpute"
+            target="_blank"
+            rel="noreferrer"
+            >Source
+            <svg class="icon" aria-hidden="true">
+              <use href="./assets/icons.svg#external" /></svg
+          ></a>
         </div>
-
-        <!-- Results Section -->
-        <div class="card">
-            <div class="card-header">Results</div>
-            <div class="card-body">
-                <p id="progressIndicator" class="text-center">Processed: <span id="progressCount">0</span> / <span
-                        id="totalSimulations">0</span></p>
-                <div id="loading" class="loading-spinner">
-                    <div class="spinner-border" role="status">
-                        <span class="visually-hidden">Loading...</span>
+      </header>
+      <div class="page-wrapper">
+        <main id="content" class="container-xl workspace">
+          <section id="analysisView" aria-labelledby="analysisTitle">
+            <div class="page-header app-page-header">
+              <div>
+                <h1 id="analysisTitle">Genotype analysis</h1>
+                <p>Reference-free imputation and PRS313 scoring</p>
+              </div>
+              <span class="local-note"
+                ><svg class="icon" aria-hidden="true">
+                  <use href="./assets/icons.svg#shield" /></svg
+                >Runs in your browser</span
+              >
+            </div>
+            <div class="analysis-grid">
+              <aside class="setup-column" aria-label="Analysis configuration">
+                <form id="analysisForm" class="card setup-card" novalidate>
+                  <div class="card-header">
+                    <h2 class="card-title">Analysis setup</h2>
+                  </div>
+                  <fieldset id="setupFields" class="card-body setup-fields">
+                    <div class="input-section">
+                      <label
+                        for="andmeDataFile"
+                        class="form-label section-label"
+                        ><span class="step-number" aria-hidden="true">1</span
+                        >Genotype file</label
+                      >
+                      <div class="file-area">
+                        <input
+                          type="file"
+                          id="andmeDataFile"
+                          name="genotypeFile"
+                          accept=".txt"
+                          aria-describedby="fileHint"
+                        />
+                      </div>
+                      <p id="fileHint" class="field-hint">
+                        Raw 23andMe data in .txt format
+                      </p>
+                      <button type="button" id="useExample" class="text-button">
+                        Use example data
+                      </button>
+                      <p
+                        id="fileStatus"
+                        class="field-hint file-status"
+                        role="status"
+                        aria-live="polite"
+                      ></p>
                     </div>
+                    <div class="input-section simulation-section">
+                      <label for="trialCount" class="form-label section-label"
+                        ><span class="step-number" aria-hidden="true">2</span
+                        >Simulation trials</label
+                      >
+                      <div class="trial-input">
+                        <input
+                          class="form-control"
+                          type="number"
+                          id="trialCount"
+                          name="simulationTrials"
+                          inputmode="numeric"
+                          autocomplete="off"
+                          min="10"
+                          max="1000"
+                          step="1"
+                          value="100"
+                          aria-describedby="trialHint"
+                        /><span>trials</span>
+                      </div>
+                      <label for="numTrials" class="visually-hidden"
+                        >Adjust simulation trials</label
+                      ><input
+                        type="range"
+                        class="form-range"
+                        id="numTrials"
+                        min="10"
+                        max="1000"
+                        step="1"
+                        value="100"
+                      />
+                      <div class="range-labels" aria-hidden="true">
+                        <span>10</span><span>1,000</span>
+                      </div>
+                      <p id="trialHint" class="field-hint">
+                        More trials sample more of the uncertainty from missing
+                        input variants.
+                      </p>
+                    </div>
+                    <dl class="method-details">
+                      <div>
+                        <dt>Model</dt>
+                        <dd>Linear regression</dd>
+                      </div>
+                      <div>
+                        <dt>Genotyping panel</dt>
+                        <dd>23andMe v5</dd>
+                      </div>
+                      <div>
+                        <dt>Score</dt>
+                        <dd>PRS313</dd>
+                      </div>
+                    </dl>
+                  </fieldset>
+                  <div class="card-footer setup-footer">
+                    <div
+                      id="analysisError"
+                      class="alert alert-danger"
+                      role="alert"
+                      tabindex="-1"
+                      hidden
+                    ></div>
+                    <button
+                      type="submit"
+                      id="processFiles"
+                      class="btn btn-primary run-button"
+                    >
+                      <svg class="icon" aria-hidden="true">
+                        <use href="./assets/icons.svg#play" /></svg
+                      ><span>Run analysis</span>
+                    </button>
+                    <p class="privacy-note">
+                      <svg class="icon" aria-hidden="true">
+                        <use href="./assets/icons.svg#lock" /></svg
+                      >Genetic data stays on this device.
+                    </p>
+                  </div>
+                </form>
+                <p class="setup-note">
+                  First run downloads the model and reference files. Processing
+                  happens locally.
+                </p>
+              </aside>
+              <section
+                class="card results-card"
+                aria-labelledby="resultsTitle"
+                aria-busy="false"
+              >
+                <div class="card-header results-header">
+                  <div class="results-heading">
+                    <h2 id="resultsTitle" class="card-title">Results</h2>
+                    <span id="resultState" class="state-label"
+                      >Awaiting analysis</span
+                    >
+                  </div>
+                  <button
+                    type="button"
+                    id="exportResults"
+                    class="btn btn-outline-secondary btn-sm"
+                    hidden
+                  >
+                    <svg class="icon" aria-hidden="true">
+                      <use href="./assets/icons.svg#download" /></svg
+                    >Export CSV
+                  </button>
                 </div>
-                <div id="summaryStats" class="row mt-4"></div>
-                <div id="results" class="row mt-4" style="display:none;">
-                    <!-- Cards will be inserted here -->
+                <div id="emptyResults" class="empty-results">
+                  <div class="empty-symbol" aria-hidden="true">
+                    <svg viewBox="0 0 64 64" fill="none">
+                      <path d="M12 12v40h42" />
+                      <path d="M20 42V32m10 10V21m10 21V16m10 26V27" />
+                    </svg>
+                  </div>
+                  <h3>Your analysis will appear here</h3>
+                  <p>
+                    Choose a genotype file and run the analysis to compare
+                    scores across five breast cancer phenotypes.
+                  </p>
+                  <div class="output-preview">
+                    <span>Included in your results</span>
+                    <ul>
+                      <li>Summary statistics for each phenotype</li>
+                      <li>Score distributions across simulation trials</li>
+                      <li>Trial-level data available as a CSV</li>
+                    </ul>
+                  </div>
+                  <a href="#methodology" class="method-link"
+                    >About the model and its limitations<svg
+                      class="icon"
+                      aria-hidden="true"
+                    >
+                      <use href="./assets/icons.svg#arrow" /></svg
+                  ></a>
                 </div>
+                <div id="loading" class="analysis-progress" hidden>
+                  <div class="progress-heading">
+                    <span
+                      class="spinner-border spinner-border-sm"
+                      aria-hidden="true"
+                    ></span>
+                    <h3 id="progressStage">Preparing analysis</h3>
+                  </div>
+                  <p id="progressDetail" role="status" aria-live="polite">
+                    Loading the model and reference files.
+                  </p>
+                  <div
+                    class="progress"
+                    role="progressbar"
+                    aria-label="Simulation progress"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    aria-valuenow="0"
+                    id="simulationProgress"
+                  >
+                    <div
+                      id="progressBar"
+                      class="progress-bar"
+                      style="width: 0%"
+                    ></div>
+                  </div>
+                  <p class="progress-count">
+                    <span id="progressCount">0</span> of
+                    <span id="totalSimulations">100</span> trials complete
+                  </p>
+                  <p class="field-hint">
+                    Keep this tab open while the analysis runs.
+                  </p>
+                </div>
+                <div id="results" hidden>
+                  <div class="run-context">
+                    <span id="runFileName"></span><span id="runMeta"></span>
+                  </div>
+                  <div
+                    class="table-responsive"
+                    role="region"
+                    aria-label="Score summary. Scroll horizontally to see all statistics."
+                    tabindex="0"
+                  >
+                    <table class="table results-table">
+                      <caption class="visually-hidden">
+                        Summary of PRS scores across simulation trials
+                      </caption>
+                      <thead>
+                        <tr>
+                          <th scope="col">Phenotype</th>
+                          <th scope="col">Mean</th>
+                          <th scope="col">Median</th>
+                          <th scope="col">
+                            <abbr title="Standard deviation">SD</abbr>
+                          </th>
+                          <th scope="col">Min</th>
+                          <th scope="col">Max</th>
+                        </tr>
+                      </thead>
+                      <tbody id="summaryStats"></tbody>
+                    </table>
+                  </div>
+                  <p class="table-scroll-hint">
+                    Scroll horizontally for all statistics.
+                  </p>
+                  <div class="distribution-section">
+                    <div class="distribution-heading">
+                      <div>
+                        <h3>Score distribution</h3>
+                        <p>Variation across simulation trials</p>
+                      </div>
+                      <div>
+                        <label class="visually-hidden" for="phenotypeSelect"
+                          >Phenotype distribution</label
+                        ><select
+                          id="phenotypeSelect"
+                          class="form-select"
+                        ></select>
+                      </div>
+                    </div>
+                    <div class="chart-container">
+                      <canvas
+                        id="distributionChart"
+                        role="img"
+                        aria-label="Histogram of PRS scores across simulation trials"
+                      ></canvas>
+                    </div>
+                    <p id="distributionSummary" class="chart-summary"></p>
+                  </div>
+                  <div class="results-footnote">
+                    <svg class="icon" aria-hidden="true">
+                      <use href="./assets/icons.svg#info" />
+                    </svg>
+                    <p>
+                      These are polygenic scores, not an absolute probability of
+                      cancer. Simulation spread reflects missing-input sampling;
+                      it is not a clinical confidence interval.
+                    </p>
+                  </div>
+                </div>
+              </section>
             </div>
-        </div>
+          </section>
+          <section
+            id="methodologyView"
+            class="methodology-view"
+            aria-labelledby="methodologyTitle"
+            hidden
+          >
+            <div class="page-header app-page-header">
+              <div>
+                <h1 id="methodologyTitle">Methodology</h1>
+                <p>What FastImpute calculates and how to read the output</p>
+              </div>
+              <a class="btn btn-outline-secondary" href="#analysis"
+                >Back to analysis</a
+              >
+            </div>
+            <div class="card methodology-card">
+              <div class="card-body prose">
+                <h2>Reference-free genotype imputation</h2>
+                <p>
+                  FastImpute uses pretrained, chromosome-specific linear
+                  regression models to predict missing PRS313 variants from
+                  observed genotypes. Models were trained on 1000 Genomes data
+                  using input variants linked to the 23andMe v5 panel. Observed
+                  PRS313 dosages are retained when available.
+                </p>
+                <h2>Simulation trials</h2>
+                <p>
+                  Missing input genotypes are sampled using the reference minor
+                  allele frequencies. Each trial repeats imputation and scoring.
+                  The table reports the mean, median, population standard
+                  deviation, minimum, and maximum across those trials. The
+                  distribution shows this sampling variation.
+                </p>
+                <h2>Five score outputs</h2>
+                <p>
+                  The existing PRS313 scoring pipeline returns overall breast
+                  cancer, ER-positive, ER-negative, hybrid ER-positive, and
+                  hybrid ER-negative scores. ER refers to estrogen receptor
+                  status. Scores are weighted sums of allele dosages, not
+                  individual cancer probabilities or calibrated risk
+                  percentiles.
+                </p>
+                <h2>Data and privacy</h2>
+                <p>
+                  The selected file is read in browser memory. Genetic data is
+                  not sent to an analysis server or saved by this page. Model
+                  weights, reference tables, and calculation libraries are
+                  downloaded when needed. Exporting results saves a CSV to your
+                  device.
+                </p>
+                <h2>Limitations</h2>
+                <p>
+                  This is a research baseline for the 23andMe v5 panel.
+                  Performance can vary with ancestry, genotyping platform,
+                  missingness, and the training data. Simulation variability
+                  does not capture every source of model error. Results are not
+                  a diagnosis or clinical risk assessment.
+                </p>
+                <a
+                  href="https://github.com/aaronge-2020/FastImpute#readme"
+                  target="_blank"
+                  rel="noreferrer"
+                  >Read the project methods and evaluation<svg
+                    class="icon"
+                    aria-hidden="true"
+                  >
+                    <use href="./assets/icons.svg#external" /></svg
+                ></a>
+              </div>
+            </div>
+          </section>
+          <footer class="workspace-footer">
+            <p>
+              Research use only. These scores are not a clinical risk
+              assessment.
+            </p>
+            <a
+              href="https://github.com/aaronge-2020/FastImpute"
+              target="_blank"
+              rel="noreferrer"
+              >FastImpute documentation<svg class="icon" aria-hidden="true">
+                <use href="./assets/icons.svg#external" /></svg
+            ></a>
+          </footer>
+        </main>
+      </div>
     </div>
-
-    <footer class="text-center py-3">
-        <p>&copy; 2024 PRS313 Scores Calculator</p>
-    </footer>
-</body>
-
+    <noscript
+      ><p class="noscript-message">
+        JavaScript is required to process genotype data in your browser.
+      </p></noscript
+    >
+  </body>
 </html>

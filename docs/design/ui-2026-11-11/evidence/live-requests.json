@@ -1,0 +1,646 @@
+[
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:4173/test_files/11576.23andme.9465.txt"
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:4173/scripts/js/main.js"
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:4173/scripts/js/23andMe.js"
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:4173/scripts/js/load_model.js"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/xlsx@0.18.5"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3@7.9.0"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-array@3?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-axis@3?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-brush@3?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-chord@3?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-color@3?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-contour@4?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-delaunay@6?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-dispatch@3?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-drag@3?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-dsv@3?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-ease@3?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-fetch@3?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-force@3?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-format@3?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-geo@3?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-hierarchy@3?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-interpolate@3?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-path@3?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-polygon@3?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-quadtree@3?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-random@3?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-scale-chromatic@3?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-scale@4?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-selection@3?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-shape@3?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-time-format@4?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-time@3?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-timer@3?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-transition@3?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-zoom@3?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3@7.9.0/es2022/d3.mjs"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/xlsx@0.18.5/es2022/xlsx.mjs"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-array@3.2.5/es2022/d3-array.mjs"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-path@1%20-%203?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-chord@3.0.2/es2022/d3-chord.mjs"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-axis@3.0.1/es2022/d3-axis.mjs"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-color@3.1.1/es2022/d3-color.mjs"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-dispatch@1%20-%203?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-quadtree@1%20-%203?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-timer@1%20-%203?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-force@3.0.1/es2022/d3-force.mjs"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-drag@3.0.1/es2022/d3-drag.mjs"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-array@%5E3.2.4?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-contour@4.0.3/es2022/d3-contour.mjs"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-drag@2%20-%203?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-interpolate@1%20-%203?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-brush@3.0.1/es2022/d3-brush.mjs"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-dsv@1%20-%203?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-fetch@3.0.2/es2022/d3-fetch.mjs"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-dsv@3.0.2/es2022/d3-dsv.mjs"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-ease@3.0.2/es2022/d3-ease.mjs"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-selection@3.0.1/es2022/d3-selection.mjs"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-quadtree@3.0.2/es2022/d3-quadtree.mjs"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-color@1%20-%203?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-interpolate@3.0.2/es2022/d3-interpolate.mjs"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-path@%5E3.1.1?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-shape@3.2.1/es2022/d3-shape.mjs"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-path@3.1.1/es2022/d3-path.mjs"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-delaunay@6.0.6/es2022/d3-delaunay.mjs"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-hierarchy@3.1.3/es2022/d3-hierarchy.mjs"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-random@3.0.2/es2022/d3-random.mjs"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-array@2.5.0%20-%203?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-geo@3.1.2/es2022/d3-geo.mjs"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-timer@3.0.2/es2022/d3-timer.mjs"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-array@2%20-%203?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-time@3.1.1/es2022/d3-time.mjs"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-scale-chromatic@3.1.1/es2022/d3-scale-chromatic.mjs"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-format@3.1.3/es2022/d3-format.mjs"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-dispatch@3.0.2/es2022/d3-dispatch.mjs"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-polygon@3.0.2/es2022/d3-polygon.mjs"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-array@2.10.0%20-%203?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-format@1%20-%203?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-interpolate@1.2.0%20-%203?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-time-format@2%20-%204?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-time@2.1.1%20-%203?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-scale@4.0.3/es2022/d3-scale.mjs"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-time@1%20-%203?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-time-format@4.1.1/es2022/d3-time-format.mjs"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-selection@2%20-%203?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-transition@2%20-%203?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-zoom@3.0.1/es2022/d3-zoom.mjs"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-ease@1%20-%203?target=es2022"
+  },
+  {
+    "method": "GET",
+    "url": "https://esm.sh/d3-transition@3.0.2/es2022/d3-transition.mjs"
+  },
+  {
+    "method": "GET",
+    "url": "https://cdn.jsdelivr.net/npm/papaparse@5.3.0/papaparse.min.js"
+  },
+  {
+    "method": "GET",
+    "url": "https://cdn.jsdelivr.net/npm/onnxruntime-web@1.20.1/dist/ort.min.js"
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:4173/Data/model_results_unphased_all_PRS/linear_regression/onnx_models/final_model_chr1.onnx"
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:4173/Data/model_results_unphased_all_PRS/linear_regression/onnx_models/final_model_chr2.onnx"
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:4173/Data/model_results_unphased_all_PRS/linear_regression/onnx_models/final_model_chr3.onnx"
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:4173/Data/model_results_unphased_all_PRS/linear_regression/onnx_models/final_model_chr4.onnx"
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:4173/Data/model_results_unphased_all_PRS/linear_regression/onnx_models/final_model_chr5.onnx"
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:4173/Data/model_results_unphased_all_PRS/linear_regression/onnx_models/final_model_chr6.onnx"
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:4173/Data/model_results_unphased_all_PRS/linear_regression/onnx_models/final_model_chr7.onnx"
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:4173/Data/model_results_unphased_all_PRS/linear_regression/onnx_models/final_model_chr8.onnx"
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:4173/Data/model_results_unphased_all_PRS/linear_regression/onnx_models/final_model_chr9.onnx"
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:4173/Data/model_results_unphased_all_PRS/linear_regression/onnx_models/final_model_chr10.onnx"
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:4173/Data/model_results_unphased_all_PRS/linear_regression/onnx_models/final_model_chr11.onnx"
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:4173/Data/model_results_unphased_all_PRS/linear_regression/onnx_models/final_model_chr12.onnx"
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:4173/Data/model_results_unphased_all_PRS/linear_regression/onnx_models/final_model_chr13.onnx"
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:4173/Data/model_results_unphased_all_PRS/linear_regression/onnx_models/final_model_chr14.onnx"
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:4173/Data/model_results_unphased_all_PRS/linear_regression/onnx_models/final_model_chr15.onnx"
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:4173/Data/model_results_unphased_all_PRS/linear_regression/onnx_models/final_model_chr16.onnx"
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:4173/Data/model_results_unphased_all_PRS/linear_regression/onnx_models/final_model_chr17.onnx"
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:4173/Data/model_results_unphased_all_PRS/linear_regression/onnx_models/final_model_chr18.onnx"
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:4173/Data/model_results_unphased_all_PRS/linear_regression/onnx_models/final_model_chr19.onnx"
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:4173/Data/model_results_unphased_all_PRS/linear_regression/onnx_models/final_model_chr20.onnx"
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:4173/Data/model_results_unphased_all_PRS/linear_regression/onnx_models/final_model_chr21.onnx"
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:4173/Data/model_results_unphased_all_PRS/linear_regression/onnx_models/final_model_chr22.onnx"
+  },
+  {
+    "method": "GET",
+    "url": "https://cdn.jsdelivr.net/npm/onnxruntime-web@1.20.1/dist/ort-wasm-simd-threaded.mjs"
+  },
+  {
+    "method": "GET",
+    "url": "https://cdn.jsdelivr.net/npm/onnxruntime-web@1.20.1/dist/ort-wasm-simd-threaded.wasm"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/Filtered_raw_training_data_union/matching_columns_all.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/PRS313_with_23andMe.xlsx"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/MAF_calculations/23AndMe_PRS313_merged_chr1_MAF.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/y_test_labels_unphased/chr1_true_labels_y_test.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/MAF_calculations/23AndMe_PRS313_merged_chr2_MAF.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/y_test_labels_unphased/chr2_true_labels_y_test.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/MAF_calculations/23AndMe_PRS313_merged_chr3_MAF.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/y_test_labels_unphased/chr3_true_labels_y_test.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/MAF_calculations/23AndMe_PRS313_merged_chr4_MAF.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/y_test_labels_unphased/chr4_true_labels_y_test.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/MAF_calculations/23AndMe_PRS313_merged_chr5_MAF.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/y_test_labels_unphased/chr5_true_labels_y_test.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/MAF_calculations/23AndMe_PRS313_merged_chr6_MAF.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/y_test_labels_unphased/chr6_true_labels_y_test.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/MAF_calculations/23AndMe_PRS313_merged_chr7_MAF.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/y_test_labels_unphased/chr7_true_labels_y_test.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/MAF_calculations/23AndMe_PRS313_merged_chr8_MAF.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/y_test_labels_unphased/chr8_true_labels_y_test.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/MAF_calculations/23AndMe_PRS313_merged_chr9_MAF.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/y_test_labels_unphased/chr9_true_labels_y_test.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/MAF_calculations/23AndMe_PRS313_merged_chr10_MAF.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/y_test_labels_unphased/chr10_true_labels_y_test.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/MAF_calculations/23AndMe_PRS313_merged_chr11_MAF.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/y_test_labels_unphased/chr11_true_labels_y_test.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/MAF_calculations/23AndMe_PRS313_merged_chr12_MAF.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/y_test_labels_unphased/chr12_true_labels_y_test.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/MAF_calculations/23AndMe_PRS313_merged_chr13_MAF.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/y_test_labels_unphased/chr13_true_labels_y_test.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/MAF_calculations/23AndMe_PRS313_merged_chr14_MAF.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/y_test_labels_unphased/chr14_true_labels_y_test.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/MAF_calculations/23AndMe_PRS313_merged_chr15_MAF.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/y_test_labels_unphased/chr15_true_labels_y_test.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/MAF_calculations/23AndMe_PRS313_merged_chr16_MAF.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/y_test_labels_unphased/chr16_true_labels_y_test.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/MAF_calculations/23AndMe_PRS313_merged_chr17_MAF.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/y_test_labels_unphased/chr17_true_labels_y_test.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/MAF_calculations/23AndMe_PRS313_merged_chr18_MAF.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/y_test_labels_unphased/chr18_true_labels_y_test.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/MAF_calculations/23AndMe_PRS313_merged_chr19_MAF.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/y_test_labels_unphased/chr19_true_labels_y_test.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/MAF_calculations/23AndMe_PRS313_merged_chr20_MAF.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/y_test_labels_unphased/chr20_true_labels_y_test.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/MAF_calculations/23AndMe_PRS313_merged_chr21_MAF.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/y_test_labels_unphased/chr21_true_labels_y_test.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/MAF_calculations/23AndMe_PRS313_merged_chr22_MAF.csv"
+  },
+  {
+    "method": "GET",
+    "url": "https://raw.githubusercontent.com/aaronge-2020/DeepImpute/main/Data/y_test_labels_unphased/chr22_true_labels_y_test.csv"
+  }
+]

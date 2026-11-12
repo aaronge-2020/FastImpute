@@ -1,0 +1,22 @@
+{
+  "name": "fastimpute-web",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "python -m http.server 4173 --bind 127.0.0.1",
+    "vendor": "node scripts/vendor.mjs",
+    "test": "node --test tests/results.test.mjs",
+    "test:ui": "node tests/workflows.mjs",
+    "test:recovery": "node tests/recovery.mjs",
+    "check": "node --check scripts/js/main.js && node --check scripts/js/workspace.js && node --check scripts/js/results-view.js && node --check scripts/js/results-data.js"
+  },
+  "dependencies": {
+    "@fontsource/ibm-plex-sans": "5.2.7",
+    "@tabler/core": "1.7.4",
+    "chart.js": "4.4.3",
+    "filepond": "4.32.14"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}

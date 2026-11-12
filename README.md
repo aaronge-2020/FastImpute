@@ -1,5 +1,13 @@
 # [FastImpute: A Baseline for Open-source, Reference-Free Genotype Imputation Methods](https://aaronge-2020.github.io/FastImpute/)
 
+### Local interface development
+
+Run `python -m http.server 4173 --bind 127.0.0.1` from the repository and open http://127.0.0.1:4173. The interface and its fonts, uploader, and chart library are static local assets. Analysis also downloads reference tables and calculation libraries, so an internet connection is needed for an uncached run.
+
+For development, run `npm ci`, then `npm test`, `npm run check`, and `npm run test:ui` with the local server running. `npm run test:ui -- --live` exercises the public example through the actual ONNX models. `npm run test:recovery` checks model-download failure, retry, and repeated runs. `npm run vendor` reproduces the pinned browser dependencies; their licenses are in `vendor/`. The Tabler license is retained from its pinned source because its npm archive omits the file.
+
+The [interface reuse audit](docs/design/ui-2026-11-11/REUSE-AUDIT.md) records the source baseline and adaptations. [Validation evidence](docs/design/ui-2026-11-11/VALIDATION.md) distinguishes UI checks from scientific validation.
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 <!-- Add other badges like build status, etc., if applicable -->
 

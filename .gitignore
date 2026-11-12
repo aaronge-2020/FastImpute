@@ -14,3 +14,8 @@
 *.tbi
 *.gz
 /Data/23andMe_files
+
+# Local UI development dependencies and browser traces
+node_modules/
+test-results/
+playwright-report/
